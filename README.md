@@ -1,6 +1,6 @@
 # advent
 🦀🦀🦀🦀NO FINAL TIME 🦀🦀🦀🦀🦀
-ADVENT DAY CLAIMS: (Remember To Save Days 1-5 for those not not as advanced in coding
+ADVENT DAY CLAIMS: (Remember To Save Days 1-5 for those not not as advanced in coding)  
 Day 1  
 Day 2  
 Day 3  
