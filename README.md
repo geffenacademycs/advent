@@ -7,7 +7,7 @@ Make a Pull Request to claim a day. Request a review from two Owners (Will, Lley
 
 - Day 6: Will DePue
 - Day 7:
-- Day 8:
+- Day 8: August Deer
 - Day 9:
 - Day 10:
 - Day 11:
