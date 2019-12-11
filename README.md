@@ -8,9 +8,9 @@ Make a Pull Request to claim a day. Request a review from two Owners (Will, Lley
 - Day 1:
 - Day 2:
 - Day 3:
-- Day 4: Jerith Liu
+- Day 4: Jerith Liu **SUBMITTED NOT FORMATTED**
 - Day 5:
-- Day 6: Will DePue **DONE BUT NOT FORMATTED AND IS STILL KINDA UGLY**
+- Day 6: Will DePue **SUBMITTED BUT NOT FORMATTED AND IS STILL KINDA UGLY**
 - Day 7:
 - Day 8: August Deer
 - Day 9:
