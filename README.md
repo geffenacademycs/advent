@@ -5,7 +5,7 @@
 ## ADVENT DAY CLAIMS: 
 Make a Pull Request to claim a day. Request a review from two Owners (Will, Lleyton, Joel, Iggy).
 
-- Day 6: Will DePue
+- Day 6: Will DePue ##DONE
 - Day 7:
 - Day 8: August Deer
 - Day 9:
