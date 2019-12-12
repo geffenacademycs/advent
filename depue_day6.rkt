@@ -74,7 +74,7 @@
          (eq? (third lst1) (third lst2))) ; and so on
          ; return false if they are matching 
        ; if they dont match then return true
-  ) ; this is kinda reversed but intentionally to reduce the size of the lowest common path function
+  )) ; this is kinda reversed but intentionally to reduce the size of the lowest common path function
 
 (define (aoc-6-2 name1 name2 file) ; starter function for tree-distancex
 (tree-distancex (tracepath (intcodes name1) ; pretty self explanatory
