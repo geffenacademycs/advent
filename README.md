@@ -3,7 +3,7 @@
 ### 🦀🦀🦀🦀NO FINAL TIME 🦀🦀🦀🦀🦀
 
 ## ADVENT DAY CLAIMS: 
-Make a Pull Request to claim a day. Request a review from two Owners (Will, Lleyton, Joel, Iggy).
+Make a Pull Request to claim a day. **Request a review from two Owners (Will, Lleyton, Joel, Iggy).**
 
 - Day 1:
 - Day 2:
