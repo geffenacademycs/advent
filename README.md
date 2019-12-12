@@ -16,7 +16,7 @@ Make a Pull Request to claim a day. **Request a review from two Owners (Will, Ll
 - Day 9:
 - Day 10:
 - Day 11:
-- Day 12:
+- Day 12: Elijah Smith
 - Day 13:
 - Day 14:
 - Day 15:
