@@ -1,0 +1,141 @@
+;Benjamin Katz-Day3
+(require 2htdp/batch-io)
+
+(define-struct point [x y])
+(define-struct line [pointA pointB])
+
+(define (horizontal? l) (eq? (point-y (line-pointA l)) (point-y (line-pointB l))))
+(define (vertical? l) (not (horizontal? l)))
+
+(define (top s)
+  (max (point-y (line-pointA s)) (point-y (line-pointB s))))
+
+(define (bottom s)
+  (min (point-y (line-pointA s)) (point-y (line-pointB s))))
+
+(define (right s)
+  (max (point-x (line-pointA s)) (point-x (line-pointB s))))
+
+(define (left s)
+  (min (point-x (line-pointA s)) (point-x (line-pointB s))))
+
+(define (contains? s p)
+  (cond
+    [(horizontal? s) (and (eq? (top s) (point-y p)) (>= (point-x p) (left s)) (<= (point-x p) (right s)))]
+    [(vertical? s) (and (eq? (left s) (point-x p)) (>= (point-y p) (bottom s)) (<= (point-y p) (top s)))]))
+
+(define patha (list (make-point 0 0) (make-point 0 5) (make-point 2 5)))
+(define pathb (list (make-point 0 0) (make-point 1 0) (make-point 1 6)))
+
+
+(define (path-file l)
+  (cond
+    [(list? l) l]
+    [else (list 
+           (to-points (car (read-csv-file l)))
+           (to-points (car (cdr (read-csv-file l)))))]))
+
+(define (to-points l)
+  (cons (make-point 0 0) (to-points-helper (make-point 0 0) l)))
+
+(define (to-points-helper last-point l)
+  (cond
+   [(empty? l) empty]
+   [else (cons (make-point (+ (point-x last-point) (x-offset (car l)))
+                           (+ (point-y last-point) (y-offset (car l))))
+               (to-points-helper (make-point (+ (point-x last-point) (x-offset (car l)))
+                                             (+ (point-y last-point) (y-offset (car l)))) (cdr l)))]))
+
+(define (x-offset s)
+  (cond
+   [(string-contains? "R" s) (string->number (substring s 1))]
+   [(string-contains? "L" s) (* -1 (string->number (substring s 1)))]
+   [else 0]))
+
+(define (y-offset s)
+  (cond
+   [(string-contains? "U" s) (string->number (substring s 1))
+    ]
+   [(string-contains? "D" s) (* -1 (string->number (substring s 1)))]
+   [else 0]))
+
+(define (to-lines l)
+  (cond
+   [(empty? (cdr l)) empty]
+   [else (cons (make-line (car l) (car (cdr l))) (to-lines (cdr l)))]))
+
+(define (intersections a b)
+  (cond
+   [(empty? a) empty]
+   [else (cond
+          [(not (empty? (path-intersections (car a) b))) (append (path-intersections (car a) b) (intersections (cdr a) b))]
+          [else (intersections (cdr a) b)])]))
+
+(define (path-intersections s b)
+  (cond
+   [(empty? b) empty]
+   [else (append (segment-intersections s (car b)) (path-intersections s (cdr b)))]))
+
+(define (segment-intersections s1 s2)
+  (cond
+   [(and (horizontal? s1) (vertical? s2)) (hv-inter s1 s2)]
+   [(and (vertical? s1) (horizontal? s2)) (hv-inter s2 s1)]
+   [(and (horizontal? s1) (horizontal? s2)) (hh-inter s1 s2)]
+   [else (vv-inter s1 s2)]))
+
+
+(define (hv-inter h v)
+  (cond
+   [(and (and (>= (top v) (top h)) (<= (bottom v) (top h)))
+         (and (>= (right h) (right v)) (<= (left h) (right v)))) (list (make-point (top h) (left v)))]
+   [else empty]))
+
+(define (hh-inter s1 s2)
+  (cond
+   [(eq? (top s1) (top s2)) (map (lambda (k) (make-point k (top s1)))
+                                 (range (max (left s1) (left s2)) (+ (min (right s1) (right s2)) 1) 1))]
+   [else empty]))
+
+(define (vv-inter s1 s2)
+  (cond
+   [(eq? (left s1) (left s2)) (map (lambda (k) (make-point (left s1) k))
+                                   (range (max (bottom s1) (bottom s2)) (+ (min (top s1) (top s2)) 1) 1))]
+   [else empty]))
+
+(define paths (path-file "paths.csv"))
+
+(define (inters l) (intersections (to-lines (car (path-file l))) (to-lines (car (cdr (path-file l))))))
+
+(define (manhatten a b)
+  (+ (abs (- (point-x a) (point-x b))) (abs (- (point-y a) (point-y b)))))
+
+(define (smaller x y)
+  (cond
+   [(> x y) y]
+   [else x]))
+
+(define (filter-zero l)
+  (cond
+    [(empty? l) empty]
+    [(and (eq? (point-x (car l)) 0) (eq? (point-y (car l)) 0)) (filter-zero (cdr l))]
+    [else (cons (car l) (filter-zero (cdr l)))]))
+
+(define (minimum-man l)
+  (cond
+    [(empty? (cdr l)) (manhatten (make-point 0 0) (car l))]
+    [else (smaller (minimum-man (cdr l)) (manhatten (make-point 0 0) (car l)))]))
+
+"Closest point"
+(define (aoc-day3-1 l) (minimum-man (filter-zero (inters l))))
+
+(define (steps-to point path)
+  (cond
+    [(contains? (car path) point) (manhatten (line-pointA (car path)) point)]
+    [else (+ (manhatten (line-pointA (car path)) (line-pointB (car path))) (steps-to point (cdr path)))]))
+
+(define (signal-delay l) (map (lambda (p) (+ (steps-to (make-point (point-y p) (point-x p)) (to-lines (car (path-file l)))) (steps-to (make-point (point-y p) (point-x p)) (to-lines (car (cdr (path-file l))))))) (filter-zero (inters l))))
+
+"Shortest signal"
+(define (aoc-day3-2 l)
+(foldl smaller 1000000000000 (signal-delay (path-file l))))
+  
