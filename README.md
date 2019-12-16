@@ -13,7 +13,7 @@ Make a Pull Request to claim a day. **Request a review from two Owners (Will, Ll
 - Day 6:  Will DePue **SUBMITTED BUT NOT FORMATTED AND IS STILL KINDA UGLY**
 - Day 7:  Ben ***(In Progress)***
 - Day 8:  Elijah Smith **SUBMITTED AND KINDA FORMATTED? DAY 8 IS WEIRD**
-- Day 9:  Joel ([@joelinnatical](https://github.com/joelinnatical)) **CLAIMED BUT NOT STARTED**
+- Day 9: 
 - Day 10: Will DePue **IN PROGESS BUT IDK I SUCK AT BUG FIXING**
 - Day 11: 
 - Day 12:
