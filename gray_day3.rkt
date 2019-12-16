@@ -43,7 +43,7 @@
 (define (manhattan-distance a b)
   (+ (abs (- (posn-x a) (posn-x b))) (abs (- (posn-y a) (posn-y b)))))
 
-; get-points : list-of-posns list-of-strings -> list-of-posns
+; apply-directions : list-of-posns list-of-strings -> list-of-posns
 ; takes in a and applies the directions in b and returns the new list
 ; where a is a list containing the known existing points, b is a list containing directions
 (define (apply-directions a b)
