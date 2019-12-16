@@ -105,7 +105,7 @@
              (+ (calculate-steps (path-to-intersection line1 (third b) (first b))) (calculate-steps (path-to-intersection line2 (second b) (first b))))))))
 
 ; aoc-day3-1 : string num -> num
-; takes a file path, input, a output to achieve, output and returns the solution to day 3,
+; takes a file path, input, and returns the solution to day 3,
 ; problem 1.
 (define (aoc-day3-1 input)
   (local [(define contents (read-csv-file input))]
@@ -113,7 +113,7 @@
 
 
 ; aoc-day3-2 : string num -> num
-; takes a file path, input, a output to achieve, output and returns the solution to day 3,
+; takes a file path, input,and returns the solution to day 3,
 ; problem 2.
 (define (aoc-day3-2 input)
   (local [(define contents (read-csv-file input)) (define line1 (apply-directions (list (make-posn 0 0)) (first contents))) (define line2 (apply-directions (list (make-posn 0 0)) (second contents)))]
