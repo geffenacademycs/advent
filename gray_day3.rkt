@@ -113,7 +113,7 @@
 
 
 ; aoc-day3-2 : string num -> num
-; takes a file path, input,and returns the solution to day 3,
+; takes a file path, input, and returns the solution to day 3,
 ; problem 2.
 (define (aoc-day3-2 input)
   (local [(define contents (read-csv-file input)) (define line1 (apply-directions (list (make-posn 0 0)) (first contents))) (define line2 (apply-directions (list (make-posn 0 0)) (second contents)))]
