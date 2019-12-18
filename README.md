@@ -20,7 +20,7 @@ Make a Pull Request to claim a day. **Request a review from two Owners (Will, Ll
 - Day 13: 
 - Day 14:
 - Day 15:
-- Day 16:
+- Day 16: August Deer **CLAIMED BUT NOT SUBMITTED**
 - Day 17: - Not Yet Posted
 - Day 18: x
 - Day 19: x
